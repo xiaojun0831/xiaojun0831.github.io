@@ -60,10 +60,72 @@
     .linkedin-link:hover {
       background: #005983;
     }
+    .small-app-section {
+      margin: 42px 0 28px 0;
+      padding: 30px 18px 24px 18px;
+      background: #f1f5fb;
+      border-radius: 11px;
+      box-shadow: 0 1px 6px #b6cdf622;
+      text-align: left;
+    }
+    .small-app-section h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #2457a3;
+      font-size: 1.32rem;
+      letter-spacing: .02em;
+    }
+    .small-app-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 18px;
+      margin-bottom: 0;
+    }
+    .small-app-list li {
+      margin-bottom: 17px;
+      background: #fff;
+      border-radius: 7px;
+      padding: 14px 18px;
+      box-shadow: 0 1px 5px #dde8f622;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.03rem;
+    }
+    .py-link {
+      text-decoration: none;
+      color: #183a66;
+      font-weight: 600;
+      border-bottom: 1.5px dashed #3e78c2;
+      transition: color 0.12s;
+      margin-left: 3px;
+    }
+    .py-link:hover {
+      color: #0077b5;
+      border-bottom: 1.5px solid #0077b5;
+    }
+    .try-badge {
+      background: #f8d838;
+      color: #7a5e05;
+      border-radius: 5px;
+      font-size: 0.96em;
+      font-weight: 600;
+      margin-left: 12px;
+      padding: 3px 11px;
+      opacity: 0.86;
+      letter-spacing: .03em;
+      display: inline-block;
+    }
     footer {
       margin-top: 35px;
       font-size: .99rem;
       color: #7e8991;
+    }
+    @media (max-width: 540px) {
+      .container { padding: 20px 3vw 24px 3vw; }
+      .small-app-section { padding: 18px 2vw 14px 2vw; }
+      .small-app-list li { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -87,11 +149,51 @@
         rel="noopener"
       >Visit my LinkedIn</a>
     </div>
+
+    <!-- Python Small Apps Section -->
+    <div class="small-app-section">
+      <h2>Test My Python Mini Apps 🐍</h2>
+      <p>
+        Try some of my interactive Python programs directly in your browser (using a service like <a href="https://replit.com/" target="_blank" rel="noopener" class="py-link">Replit</a>), or download/run them locally.<br>
+        <span style="color:#898e96;font-size:0.96em;">*Click <span class="try-badge">Try Online</span> to open in Replit, or <span class="py-link" style="font-weight:500;">View Code</span> to see the Python file on GitHub.</span>
+      </p>
+      <ul class="small-app-list">
+        <li>
+          <div><strong>Blackjack</strong> &mdash; A simple terminal blackjack game</div>
+          <div>
+            <a class="try-badge" href="https://replit.com/github/xiaojun0831/portfolio/tree/main/python/Game.py" target="_blank" rel="noopener">Try Online</a>
+            <a class="py-link" href="https://github.com/xiaojun0831/portfolio/blob/main/python/Game.py" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </li>
+        <li>
+          <div><strong>Wordle</strong> &mdash; Play a Wordle clone in your terminal</div>
+          <div>
+            <a class="try-badge" href="https://replit.com/github/xiaojun0831/portfolio/tree/main/python/wordle.py" target="_blank" rel="noopener">Try Online</a>
+            <a class="py-link" href="https://github.com/xiaojun0831/portfolio/blob/main/python/wordle.py" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </li>
+        <li>
+          <div><strong>Fuel Price Calculator</strong> &mdash; Terminal tool to calculate fuel costs</div>
+          <div>
+            <a class="try-badge" href="https://replit.com/github/xiaojun0831/portfolio/tree/main/python/fuel.py" target="_blank" rel="noopener">Try Online</a>
+            <a class="py-link" href="https://github.com/xiaojun0831/portfolio/blob/main/python/fuel.py" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </li>
+        <li>
+          <div><strong>Olympics Data Fetcher</strong> &mdash; Get Olympic stats</div>
+          <div>
+            <a class="try-badge" href="https://replit.com/github/xiaojun0831/portfolio/tree/main/python/olympics.py" target="_blank" rel="noopener">Try Online</a>
+            <a class="py-link" href="https://github.com/xiaojun0831/portfolio/blob/main/python/olympics.py" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <!-- Spotify Now Playing -->
-  <div id="spotify-section">
-    <p style="opacity:0.6;font-size:0.85rem;">Now Playing</p>
-    <div id="spotify-status">Loading…</div>
-  </div>
+    <div id="spotify-section">
+      <p style="opacity:0.6;font-size:0.85rem;">Now Playing</p>
+      <div id="spotify-status">Loading…</div>
+    </div>
     <footer>
       &copy; 2025 Xiaojun Huang. &ndash; Built with Node.js
     </footer>
