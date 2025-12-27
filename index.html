@@ -20,7 +20,6 @@
       position: relative;
       max-width: 620px;
       margin: 64px auto;
-      /* Matches .container and .hobbies-container for alignment  */
     }
     .flip-card {
       width: 100%;
@@ -38,7 +37,6 @@
       height: 100%;
       left: 0; top: 0;
       backface-visibility: hidden;
-      /* Ensure stacking for flip */
     }
     .flip-face.front {
       z-index: 2;
@@ -58,7 +56,7 @@
       transition: background 0.4s, color 0.4s;
       position: relative;
       z-index: 2;
-      margin: 0; /* Let .flip-perspective handle overall margin */
+      margin: 0;
     }
     h1 {
       margin-top: 0;
@@ -137,7 +135,6 @@
       transform: scale(1.12) rotateY(180deg);
     }
     .flip-btn-back {
-      /* For back button (back arrow) */
       background: #7438c9;
     }
     .flip-btn-back:hover {
@@ -204,15 +201,15 @@
             title="See Hobbies"
             style="display: block;"
     >
-      <!-- SVG for two arrows forming a circle, left and right, circular arrangement -->
+      <!-- SVG: Proper circular arrow with two arrowheads -->
       <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" style="display:block;" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g>
-          <path d="M7.3 22.5A11 11 0 1 1 16 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M16 27l2.8-6.2M16 27l-5.7-2.6"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M24.7 9.5A11 11 0 0 1 16 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M16 5l-2.8 6.2M16 5l5.7 2.6"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Top semicircle with arrowhead right -->
+          <path d="M7 16a9 9 0 0 1 15.36-6.36" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="20.8,10.0 21.0,6.2 24.5,8.4" fill="currentColor"/>
+          <!-- Bottom semicircle with arrowhead left -->
+          <path d="M25 16a9 9 0 0 1-15.36 6.36" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="11.2,22.0 11.0,25.8 7.5,23.6" fill="currentColor"/>
         </g>
       </svg>
     </button>
@@ -223,15 +220,15 @@
             title="Back to Portfolio"
             style="display: none; margin-left: 16px;"
     >
-      <!-- SVG mirrored (reverse the arrows for "flip back") -->
+      <!-- SVG: Proper circular arrow with two arrowheads, reversed for "back" -->
       <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" style="display:block; transform:scaleX(-1);" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g>
-          <path d="M7.3 22.5A11 11 0 1 1 16 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M16 27l2.8-6.2M16 27l-5.7-2.6"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M24.7 9.5A11 11 0 0 1 16 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M16 5l-2.8 6.2M16 5l5.7 2.6"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Top semicircle with arrowhead right (now visually left when mirrored) -->
+          <path d="M7 16a9 9 0 0 1 15.36-6.36" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="20.8,10.0 21.0,6.2 24.5,8.4" fill="currentColor"/>
+          <!-- Bottom semicircle with arrowhead left (now visually right when mirrored) -->
+          <path d="M25 16a9 9 0 0 1-15.36 6.36" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="11.2,22.0 11.0,25.8 7.5,23.6" fill="currentColor"/>
         </g>
       </svg>
     </button>
@@ -304,7 +301,6 @@
       }
     }
 
-    // Add/remove 'flipped' for Y axis 3D animation
     flipBtn.onclick = function() {
       flipCard.classList.add('flipped');
       document.body.classList.add('hobbies-bg');
@@ -316,7 +312,6 @@
       updateFlipBtns();
     };
 
-    // Optional: Keyboard support for accessibility (left/right arrow)
     document.addEventListener('keydown', e => {
       if(flipCard.classList.contains('flipped')) {
         if(e.key === 'ArrowLeft' || e.key === 'Escape') {
@@ -329,7 +324,6 @@
       }
     });
 
-    // Initial state for both flip buttons
     updateFlipBtns();
     // You must REPLACE the value in .hobbies-bg background url() with your image file location.
     // Example: background: url('images/my_hobbies.jpg') center center/cover no-repeat fixed;
