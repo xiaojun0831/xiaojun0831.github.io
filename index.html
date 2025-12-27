@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,10 +112,25 @@
       box-shadow: 0 2px 8px #5875ad22;
       cursor: pointer;
       transition: background 0.16s, transform 0.2s;
-      margin: 22px auto 0 auto;
       outline: none;
       position: relative;
       vertical-align: middle;
+      margin: 0;
+    }
+    .flip-btn-outer {
+      margin: 36px auto 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      /* keep separated from card visually */
+      pointer-events: none; /* prevent accidental hover over outer div */
+      z-index: 10;
+      position: relative;
+      max-width: 620px;
+    }
+    .icon-flip-btn {
+      pointer-events: auto; /* restore pointer interaction for button itself */
     }
     .icon-flip-btn:hover {
       background: #49277a;
@@ -125,7 +139,6 @@
     .flip-btn-back {
       /* For back button (back arrow) */
       background: #7438c9;
-      margin-top: 28px;
     }
     .flip-btn-back:hover {
       background: #49277a;
@@ -178,10 +191,51 @@
         padding: 22px 5vw 18px 5vw;
       }
       .flip-perspective { margin: 32px auto; }
+      .flip-btn-outer { margin-top: 18px; }
     }
   </style>
 </head>
 <body>
+  <!-- FLIP BUTTON OUTSIDE MAIN BLOCK -->
+  <div class="flip-btn-outer">
+    <button class="icon-flip-btn"
+            id="flipToggleBtn"
+            aria-label="See Hobbies"
+            title="See Hobbies"
+            style="display: block;"
+    >
+      <!-- SVG for two arrows forming a circle, left and right, circular arrangement -->
+      <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" style="display:block;" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path d="M7.3 22.5A11 11 0 1 1 16 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M16 27l2.8-6.2M16 27l-5.7-2.6"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M24.7 9.5A11 11 0 0 1 16 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M16 5l-2.8 6.2M16 5l5.7 2.6"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+      </svg>
+    </button>
+    <!-- BACK FLIP BUTTON: Only visible when flipped (handled via script) -->
+    <button class="icon-flip-btn flip-btn-back"
+            id="flipBackBtn"
+            aria-label="Back to Portfolio"
+            title="Back to Portfolio"
+            style="display: none; margin-left: 16px;"
+    >
+      <!-- SVG mirrored (reverse the arrows for "flip back") -->
+      <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" style="display:block; transform:scaleX(-1);" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path d="M7.3 22.5A11 11 0 1 1 16 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M16 27l2.8-6.2M16 27l-5.7-2.6"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M24.7 9.5A11 11 0 0 1 16 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M16 5l-2.8 6.2M16 5l5.7 2.6"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+      </svg>
+    </button>
+  </div>
   <div class="flip-perspective">
     <div class="flip-card" id="flipCard">
       <!-- FRONT: Portfolio -->
@@ -213,16 +267,6 @@
           <footer>
             &copy; 2025 Xiaojun Huang. &ndash; Built with Node.js
           </footer>
-          <!-- FLIP BUTTON: symbol and closer to the bottom of this block -->
-          <div style="margin-top:16px; text-align:center;">
-            <button class="icon-flip-btn"
-                    id="flipToggleBtn"
-                    aria-label="See Hobbies"
-                    title="See Hobbies"
-            >
-              <span aria-hidden="true" style="font-size:1.55em;display:inline-block;transform: translateY(2px);">★</span>
-            </button>
-          </div>
         </div>
       </div>
       <!-- BACK: Hobbies -->
@@ -239,16 +283,6 @@
             <li>Reading sci-fi/fantasy novels &amp; webcomics</li>
             <li>Bouldering at the local climbing gym</li>
           </ul>
-          <!-- FLIP BACK BUTTON: left arrow, symbol only -->
-          <div style="margin-top:27px; text-align:center;">
-            <button class="icon-flip-btn flip-btn-back"
-                    id="flipBackBtn"
-                    aria-label="Back to Portfolio"
-                    title="Back to Portfolio"
-            >
-              <span aria-hidden="true" style="font-size:1.55em;display:inline-block;transform: translateY(2px);">&#8592;</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -260,14 +294,26 @@
     const flipBtn = document.getElementById('flipToggleBtn');
     const flipBackBtn = document.getElementById('flipBackBtn');
 
+    function updateFlipBtns() {
+      if (flipCard.classList.contains('flipped')) {
+        flipBtn.style.display = "none";
+        flipBackBtn.style.display = "block";
+      } else {
+        flipBtn.style.display = "block";
+        flipBackBtn.style.display = "none";
+      }
+    }
+
     // Add/remove 'flipped' for Y axis 3D animation
     flipBtn.onclick = function() {
       flipCard.classList.add('flipped');
       document.body.classList.add('hobbies-bg');
+      updateFlipBtns();
     };
     flipBackBtn.onclick = function() {
       flipCard.classList.remove('flipped');
       document.body.classList.remove('hobbies-bg');
+      updateFlipBtns();
     };
 
     // Optional: Keyboard support for accessibility (left/right arrow)
@@ -282,6 +328,9 @@
         }
       }
     });
+
+    // Initial state for both flip buttons
+    updateFlipBtns();
     // You must REPLACE the value in .hobbies-bg background url() with your image file location.
     // Example: background: url('images/my_hobbies.jpg') center center/cover no-repeat fixed;
   </script>
