@@ -16,8 +16,6 @@
       height: 100%;
     }
     body {
-      /* Use 'Montserrat' as a highly similar open source alternative to Proxima Nova,
-         fallback to system sans, but allow easy font override. */
       font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f7f7fa;
       color: #222;
@@ -131,22 +129,22 @@
     /* Arrow + hover! callout (beside the button, arrowhead close to button edge) */
     .hover-arrow-callout {
       position: absolute;
-      right: 78px; /* Move callout so arrowhead is at button's left edge */
-      bottom: 6px;
+      right: 54px; /* Move arrow callout closer so arrowhead is right beside the button */
+      bottom: 7px;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       pointer-events: none;
       z-index: 40;
-      width: 88px;
-      height: 92px;
-      /* visually lines up arrow tip to button face */
+      width: 62px;
+      height: 66px;
+      /* Arrow tip at (61,48) aligns with button's left edge at left:6px, btn 54x54, ring 66x66 */
     }
     .hover-arrow-handwrite {
-      margin-bottom: 3px;
-      margin-right: 16px;
+      margin-bottom: 0px;
+      margin-right: 4px;
       font-family: 'Shadows Into Light', cursive, sans-serif;
-      font-size: 1.48rem;
+      font-size: 1.4rem;
       color: #7f57ec;
       letter-spacing: 1px;
       white-space: nowrap;
@@ -156,8 +154,8 @@
       text-shadow: 0 2px 10px #e5dbf688;
     }
     .hover-arrow-svg {
-      width: 77px;
-      height: 60px;
+      width: 61px;
+      height: 50px;
       display: block;
       /* Arrow color matches progress-ring__circle */
       stroke: #7f57ec;
@@ -312,19 +310,19 @@
       .flip-btn-outer { margin-top: 18px; }
       .flip-image-btn-holder { width: 52vw; max-width: 70px; }
       .hover-arrow-callout {
-        right: 66vw !important;
-        width: 78px !important;
-        height: 60px !important;
-        min-width: 40px;
+        right: 64vw !important;
+        width: 38px !important;
+        height: 36px !important;
+        min-width: 24px;
       }
       .hover-arrow-handwrite {
         font-size: 1.01rem;
         margin-bottom: 0;
-        margin-right: 10px;
+        margin-right: 3px;
       }
       .hover-arrow-svg {
-        width: 42px;
-        height: 32px;
+        width: 31px;
+        height: 24px;
       }
     }
   </style>
@@ -335,14 +333,14 @@
     <!-- Handdrawn Arrow + hover! callout (only visible on front) -->
     <div class="hover-arrow-callout" id="hoverArrowCallout">
       <div class="hover-arrow-handwrite">hover!</div>
-      <svg class="hover-arrow-svg" viewBox="0 0 80 60" aria-hidden="true" focusable="false">
-        <!-- Arrow curved from top right nicely downward; tip at (78,48) which lines up with button edge -->
-        <path d="M72 7 
-          Q 68 32 15 25
-          Q 23 45 63 44
-          Q 76 44 78 48"
-          style="stroke: #7f57ec; stroke-width:3.3; fill: none; stroke-linecap: round; stroke-linejoin: round;" />
-        <polyline points="78,48 76,58 71,51" style="stroke:#7f57ec;stroke-width:3;fill:none;stroke-linecap:round"/>
+      <svg class="hover-arrow-svg" viewBox="0 0 62 50" aria-hidden="true" focusable="false">
+        <!-- Arrow path designed so tip is at (61,39), which aligns right beside the button's left edge -->
+        <path d="M60 11
+          Q 56 28 15 22
+          Q 18 44 52 40
+          Q 59 39 61 39"
+          style="stroke: #7f57ec; stroke-width:3.2; fill: none; stroke-linecap: round; stroke-linejoin: round;" />
+        <polyline points="61,39 58,48 54,41" style="stroke:#7f57ec;stroke-width:2.8;fill:none;stroke-linecap:round"/>
       </svg>
     </div>
     <div class="flip-image-btn-holder" id="flipBtnHolder" style="pointer-events:auto;">
